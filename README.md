@@ -1,12 +1,12 @@
-# Continuous Delivery Pipeline (CDEP)
+# Visual Continuous Delivery Pipeline (CDEP) Setup
 
 ## Overview
-CDEP is designed to give instructors the ability to quickly and easily setup
+VCDEP is designed to give instructors the ability to quickly and easily setup
 an automated continous delivery system that they can use in a Software
-Engineering course to teach continuous delivery concepts.
+Engineering course and engages students visually to teach continuous delivery concepts.
 
-CDEP offers orchestration of both PHP and Java projects through the
-continuous integration tool Jenkins. The main features of CDEP are the
+VCDEP offers orchestration of both PHP and Java projects through the
+continuous integration tool Jenkins. The main features of VCDEP are the
 following:
 
 <ul>
