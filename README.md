@@ -39,6 +39,9 @@ Once the start.sh script finishes and you see that the master container is
 fully up and running, navigate to http://<jenkins_ip_address>/securityRealm/firstUser
 to create the admin account.
 
+Also the url for the webhook to start the Jenkins job is
+http://<jenkins_ip_address>/job/jenkins_pipeline/buildWithParameters?token=github-token
+
 ## Activities
 We have provided premade activities for both PHP and Java, which serve as
 a template for you to create your own and use. We believe these activities give
