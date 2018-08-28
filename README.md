@@ -1,4 +1,4 @@
-# Visual Continuous Delivery Pipeline (CDEP) Setup
+# Visual Continuous Delivery Pipeline (VCDEP) Setup
 
 ## Overview
 VCDEP is designed to give instructors the ability to quickly and easily setup
