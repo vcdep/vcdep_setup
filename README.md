@@ -40,7 +40,7 @@ fully up and running, navigate to http://<jenkins_ip_address>/securityRealm/firs
 to create the admin account.
 
 Also the url for the webhook to start the Jenkins job is
-http://<jenkins_ip_address>/job/jenkins_pipeline/buildWithParameters?token=github-token
+http://<jenkins_ip_address>/job/jenkins_pipeline/buildWithParameters?token=github-token.The initial webhook setup will automatically fire off a webhook with test data. This will cause the Jenkins job to fail, which is completely normal. Subsequent webhook posts will be successful since they contain the correct data format.
 
 ## Activities
 We have provided premade activities for both PHP and Java, which serve as
