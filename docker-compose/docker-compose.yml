@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  master:
+    container_name: master
+    image: nathancooper/jenkins:master
+    build:
+      context: ../
+      dockerfile: ./jenkins_server/Dockerfile.development
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /cdep:/cdep
+
+  staging:
+    container_name: staging
+    image: nathancooper/jenkins:staging
+    build:
+      context: ../
+      dockerfile: ./staging/Dockerfile
+
+  java-db:
+    container_name: java-db
+    image: nathancooper/jenkins:java-db
+    build:
+      context: ../
+      dockerfile: ./java_database/Dockerfile
+
+  php-db:
+    container_name: php-db
+    image: nathancooper/jenkins:php-db
+    build:
+      context: ../
+      dockerfile: ./php_database/Dockerfile
+
+  vcdep-db:
+    container_name: vcdep-db
+    image: mongo
+
+  vcdep:
+    container_name: vcdep
+    image: nathancooper/jenkins:vcdep
+    build:
+      context: ../
+      dockerfile: ./vcdep_server/Dockerfile.development
+    volumes:
+      - ../vcdep_server:/home/vcdep/
+
+  reverse_proxy:
+    image: nathancooper/jenkins:reverse_proxy
+    build:
+      context: ../
+      dockerfile: ./reverse_proxy/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - vcdep   

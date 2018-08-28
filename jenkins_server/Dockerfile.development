@@ -1,0 +1,41 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+ENV JAVA_OPTS=-Dpermissive-script-security.enabled=true
+
+RUN apt-get update -y && apt-get upgrade -y
+
+# Install docker client so jenkins can perform docker commands
+RUN apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
+RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add -
+RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+RUN apt-get update
+RUN apt-get install docker-ce -y
+
+# Setup the jenkins job and required .ssh folder for storing the ssh key for
+# authenticating to github
+RUN mkdir -p /var/jenkins_home/jobs/jenkins_pipeline
+RUN mkdir -p /root/.ssh
+
+COPY ./jenkins_server/.ssh /root/.ssh
+RUN chown root:root /root/.ssh/id_rsa
+RUN chmod 700 /root/.ssh/id_rsa
+
+# Copy over config file for setting up the jenkins_pipeline job
+COPY ./jenkins_server/config.xml /var/jenkins_home/jobs/jenkins_pipeline/config.xml
+COPY ./jenkins_server/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml /var/jenkins_home/org.jenkinsci.plugins.workflow.libs.GlobalLibraries.xml
+
+# Copy over configfile for setting up jenkins and default user
+COPY ./jenkins_server/jenkins_config.xml /var/jenkins_home/config.xml
+
+# Install all the required plugins
+COPY ./jenkins_server/plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+
+# "For 2.x-derived images, you may also want to" - we're 2.0 dervied, so we want this
+RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+
+WORKDIR /cdep
+
+EXPOSE 8080

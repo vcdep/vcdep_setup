@@ -19,7 +19,7 @@ following:
 ## Installation
 Prerequisites:
 <ul>
-<li> Ubuntu Server </li>
+<li> Ubuntu Xenial 16.04 Server </li>
 <li> Docker  <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">(Installation Guide)</a>. You must also follow the post installation instruction which can be found <a target="_blank" href="https://docs.docker.com/install/linux/linux-postinstall/">here</a></li>
 <li> Docker Compose <a target="_blank" href="https://docs.docker.com/compose/install/#install-compose">(Installation Guide)</a>. Make sure to select the Linux installation guide from the available list.</li>
 <li> Git </li>

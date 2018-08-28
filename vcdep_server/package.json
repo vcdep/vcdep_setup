@@ -1,0 +1,16 @@
+{
+  "name": "vcdep",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "express": "latest",
+    "mongoose": "latest",
+    "mongoose-trigger": "^1.0.1",
+    "promise": "^8.0.1",
+    "request": "2.83.0"
+  }
+}
