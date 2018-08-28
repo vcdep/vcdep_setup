@@ -62,4 +62,12 @@ attempted but it does not solve it 100% of the time. We suggest restarting the
 VCDEP server once the everything is up and running by navigating to the
 vcdep_server folder, opening the server.js file and resaving it. This causes
 nodemon to think a change has been remade and restart the server.</li>
+<li>Docker requires their containers to be lower case and unique, so we
+programmed docker to use the name of the repositories. We automatically
+downcase the repositories to lowercase for this reason, however, this also
+happens for the url addresses for staging and we noticed that students had
+difficulty finding their repositories for this reason because on github it
+shows as uppercase so they use that for the url and get a 404 not found. So,
+when you make the repositories, please use all lowercase names to avoid such
+confusion.</li>
 </ul>
